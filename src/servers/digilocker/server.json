@@ -1,0 +1,43 @@
+{
+  "name": "india-mcp/digilocker",
+  "display_name": "DigiLocker Server",
+  "description": "Access DigiLocker documents, manage OAuth flow, and verify Aadhaar seeding for India's digital document storage system",
+  "version": "1.0.0",
+  "author": {
+    "name": "india-mcp",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "license": "MIT",
+  "tags": ["india", "digilocker", "documents", "aadhaar", "government", "api"],
+  "tools": [
+    "get_oauth_url",
+    "exchange_auth_code",
+    "list_issued_documents",
+    "get_document",
+    "verify_aadhaar_seeding"
+  ],
+  "installation": {
+    "type": "npm",
+    "package": "@india-mcp/digilocker",
+    "registry": "https://www.npmjs.com/package/@india-mcp/digilocker",
+    "installCommand": "npm install @india-mcp/digilocker"
+  },
+  "config_example": {
+    "mcpServers": {
+      "india-digilocker": {
+        "command": "npx",
+        "args": ["@india-mcp/digilocker"],
+        "env": {
+          "DIGILOCKER_CLIENT_ID": "your_client_id",
+          "DIGILOCKER_CLIENT_SECRET": "your_client_secret"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "homepage": "https://github.com/anomalyco/india-mcp",
+  "keywords": ["mcp", "model-context-protocol", "india", "digilocker", "documents", "aadhaar", "api"]
+}

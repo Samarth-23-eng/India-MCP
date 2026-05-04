@@ -1,0 +1,40 @@
+{
+  "name": "india-mcp/gst",
+  "display_name": "India GST Server",
+  "description": "Search HSN codes, validate GSTINs, calculate GST, and get filing deadlines for India's Goods and Services Tax system",
+  "version": "1.0.0",
+  "author": {
+    "name": "india-mcp",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "license": "MIT",
+  "tags": ["india", "gst", "tax", "hsn", "government", "api"],
+  "tools": [
+    "search_hsn_code",
+    "get_gst_rate_by_hsn",
+    "calculate_gst",
+    "validate_gstin",
+    "get_filing_deadlines"
+  ],
+  "installation": {
+    "type": "npm",
+    "package": "@india-mcp/gst",
+    "registry": "https://www.npmjs.com/package/@india-mcp/gst",
+    "installCommand": "npm install @india-mcp/gst"
+  },
+  "config_example": {
+    "mcpServers": {
+      "india-gst": {
+        "command": "npx",
+        "args": ["@india-mcp/gst"],
+        "env": {}
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "homepage": "https://github.com/anomalyco/india-mcp",
+  "keywords": ["mcp", "model-context-protocol", "india", "gst", "tax", "hsn", "api"]
+}
