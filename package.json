@@ -1,6 +1,6 @@
 {
   "name": "@samarth-23-eng/india-mcp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "mcpName": "io.github.Samarth-23-eng/india-mcp-gst",
   "main": "index.js",
   "scripts": {
