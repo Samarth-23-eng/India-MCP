@@ -1,8 +1,22 @@
 {
   "name": "@samarth-23-eng/india-mcp",
   "version": "1.0.10",
-  "mcpName": "io.github.Samarth-23-eng/india-mcp-rto",
-  "main": "index.js",
+  "mcpName": "io.github.Samarth-23-eng/india-mcp",
+  "description": "MCP servers for Indian APIs — GST, Railways, RTO and more. Let AI agents operate natively in the Indian market.",
+  "keywords": ["mcp", "india", "gst", "gstin", "railways", "irctc", "rto", "vehicle", "indian-api", "model-context-protocol"],
+  "author": {
+    "name": "Samarth-23-eng",
+    "url": "https://github.com/Samarth-23-eng"
+  },
+  "bugs": {
+    "url": "https://github.com/Samarth-23-eng/India-MCP/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Samarth-23-eng/India-MCP#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Samarth-23-eng/India-MCP.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:client": "ts-node --esm src/test-client.ts",

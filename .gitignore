@@ -2,3 +2,7 @@
 dist/
 .env
 *.log
+*.tgz
+temp.txt
+server.json
+claude-desktop-config.json

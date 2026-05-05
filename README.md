@@ -1,61 +1,76 @@
-# 🇮🇳 India MCP
+# 🇮🇳 India MCP — Model Context Protocol Servers for Indian APIs
 
 <p align="center">
-  <strong>Model Context Protocol Servers for Indian APIs</strong>
+  <strong>Let AI agents operate natively in the Indian market</strong>
 </p>
 
 <p align="center">
-  Let AI agents operate natively in the Indian market
-</p>
-
-<p align="center">
+  <a href="https://www.npmjs.com/package/@samarth-23-eng/india-mcp"><img src="https://img.shields.io/npm/v/@samarth-23-eng/india-mcp?style=flat" alt="npm"></a>
+  <a href="https://github.com/Samarth-23-eng/India-MCP/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat" alt="License"></a>
+  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-Compatible-green?style=flat" alt="MCP"></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-1.29.0-blue?style=flat" alt="MCP"></a>
-  <a href="https://github.com/anomalyco/opencode/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat" alt="License MIT"></a>
 </p>
 
-## Overview
+India MCP provides Model Context Protocol (MCP) servers that wrap popular Indian government and enterprise APIs. Enable AI assistants like Claude Desktop, Cursor, and others to interact natively with Indian digital infrastructure.
 
-India MCP provides Model Context Protocol servers that wrap popular Indian government and enterprise APIs, enabling AI assistants like Claude, ChatGPT, and others to interact natively with Indian digital infrastructure.
+## Available Servers
 
-## Servers
+| Server | Registry | Tools | Description |
+|--------|----------|------|-------------|
+| **GST** | [`@samarth-23-eng/india-mcp-gst`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-gst) | 5 | Validate GSTINs, search HSN/SAC codes, calculate GST, get filing deadlines |
+| **Railways** | [`@samarth-23-eng/india-mcp-railways`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-railways) | 7 | Search trains, PNR status, schedules, live status, fare enquiry |
+| **RTO** | [`@samarth-23-eng/india-mcp-rto`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-rto) | 6 | Decode vehicle registration, road tax calculator, RTO info |
+| **Delhivery** | [`@samarth-23-eng/india-mcp-delhivery`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-delhivery) | 6 | Track shipments, shipping rates, pincode serviceability |
+| **DigiLocker** | [`@samarth-23-eng/india-mcp-digilocker`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-digilocker) | 5 | Access government documents, verify Aadhaar linking |
 
-| Server | API Wrapped | Tools | Status |
-|--------|-------------|-------|--------|
-| [GST Server](./src/servers/gst-server.ts) | GST Public APIs (services.gst.gov.in) | 5 | Active |
-| [Delhivery Server](./src/servers/delhivery-server.ts) | Delhivery Logistics API | 6 | Active |
-| [DigiLocker Server](./src/servers/digilocker-server.ts) | DigiLocker OAuth2 API | 5 | Active |
+## Installation
+
+Install all servers:
+```bash
+npm install @samarth-23-eng/india-mcp
+```
+
+Or install individual servers:
+```bash
+npm install @samarth-23-eng/india-mcp-gst
+npm install @samarth-23-eng/india-mcp-railways
+npm install @samarth-23-eng/india-mcp-rto
+```
 
 ## Quick Start
 
-### 1. Install Dependencies
+### Claude Desktop Configuration
 
-```bash
-npm install
-```
-
-### 2. Configure in Claude Desktop
-
-Add server configurations to your Claude Desktop config JSON:
+Add to your Claude Desktop `config.json`:
 
 ```json
 {
   "mcpServers": {
     "india-gst": {
       "command": "npx",
-      "args": ["--yes", "ts-node", "--esm", "src/servers/gst-server-entry.ts"],
+      "args": ["@samarth-23-eng/india-mcp-gst"],
+      "env": {}
+    },
+    "india-railways": {
+      "command": "npx",
+      "args": ["@samarth-23-eng/india-mcp-railways"],
+      "env": {}
+    },
+    "india-rto": {
+      "command": "npx",
+      "args": ["@samarth-23-eng/india-mcp-rto"],
       "env": {}
     },
     "india-delhivery": {
       "command": "npx",
-      "args": ["--yes", "ts-node", "--esm", "src/servers/delhivery-server-entry.ts"],
+      "args": ["@samarth-23-eng/india-mcp-delhivery"],
       "env": {
-        "DELHIVERY_TOKEN": "your_token"
+        "DELHIVERY_TOKEN": "your_token_here"
       }
     },
     "india-digilocker": {
       "command": "npx",
-      "args": ["--yes", "ts-node", "--esm", "src/servers/digilocker-server-entry.ts"],
+      "args": ["@samarth-23-eng/india-mcp-digilocker"],
       "env": {
         "DIGILOCKER_CLIENT_ID": "your_client_id",
         "DIGILOCKER_CLIENT_SECRET": "your_client_secret"
@@ -65,11 +80,17 @@ Add server configurations to your Claude Desktop config JSON:
 }
 ```
 
-### 3. Run Locally
+### Run Locally
 
 ```bash
 # GST Server (no auth required)
 npm run gst
+
+# Railways Server (no auth required)
+npm run railways
+
+# RTO Server (no auth required)
+npm run rto
 
 # Delhivery Server (requires token)
 DELHIVERY_TOKEN=your_token npm run delhivery
@@ -80,56 +101,44 @@ DIGILOCKER_CLIENT_ID=xxx DIGILOCKER_CLIENT_SECRET=xxx npm run digilocker
 
 ## Environment Variables
 
-### GST Server
-| Variable | Required | Description |
-|----------|----------|-------------|
-| None | No | Uses public GST APIs |
-
-### Delhivery Server
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DELHIVERY_TOKEN` | Yes | API token from Delhivery dashboard |
-
-### DigiLocker Server
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DIGILOCKER_CLIENT_ID` | Yes | Client ID from DigiLocker Developer Portal |
-| `DIGILOCKER_CLIENT_SECRET` | Yes | Client Secret from DigiLocker Developer Portal |
-| `DIGILOCKER_ACCESS_TOKEN` | No | Pre-generated access token (optional) |
+| Variable | Server | Required | Description |
+|----------|--------|----------|-------------|
+| None | GST | No | Uses public GST APIs — no auth needed |
+| `DELHIVERY_TOKEN` | Delhivery | Yes | Get from [Delhivery Dashboard](https://track.delhivery.com/settings/api) |
+| `DIGILOCKER_CLIENT_ID` | DigiLocker | Yes | Get from [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/) |
+| `DIGILOCKER_CLIENT_SECRET` | DigiLocker | Yes | Get from [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/) |
 
 ## Why India MCP?
 
-The Indian market has unique digital infrastructure that global AI assistants cannot natively access:
+India has unique digital infrastructure that global AI assistants cannot natively access:
 
 - **GST System** — Every business in India must comply with GST. AI agents need to look up HSN codes, validate GSTINs, and calculate taxes.
-- **Logistics** — Delhivery, Shiprocket, and Ecom Express handle most last-mile delivery. AI agents need tracking and rate calculation.
-- **DigiLocker** — Government documents (Aadhaar, PAN, driving license, vehicle registration) are stored here. AI agents need document access.
+- **Railways** — Indian Railways handles 8,000+ trains daily. AI agents need train search, PNR status, and live tracking.
+- **RTO** — Vehicle registration, road tax, and challan checking are essential for automotive AI use cases.
+- **Logistics** — Delhivery, Shiprocket handle most last-mile delivery in India.
+- **DigiLocker** — Government documents (Aadhaar, PAN, driving license, vehicle registration) are stored here.
 
 This project fills the gap in AI agent coverage for the world's largest market by population.
 
+## Roadmap
+
+Looking to add more servers. Contributions welcome:
+
+- **India Post** — Track speed post shipments
+- **EPFO/PF** — Provident fund information
+- **IndiaMART** — B2B lead fetching
+- **MakeMyTrip/IRCTC** — Travel booking
+- **Razorpay** — Payment gateway integration
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for adding new servers.
+
 ## Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
+Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on:
 
-### Adding a New Server
-
-1. Create a new server file following the base server pattern
-2. Implement all required tools
-3. Add entry point script
-4. Update README.md with server details
-5. Submit a PR
-
-### Supported APIs
-
-Looking for contributions for these APIs:
-
-- **Zoho Books** — Indian accounting software
-- **IndiaMART** — B2B marketplace API
-- **NSDL** — Protean (CDSL, NSDL demat)
-- **MakeMyTrip** — Travel booking API
-- **IRCTC** — Indian Railways API
-
-Check [CONTRIBUTING.md](./CONTRIBUTING.md) for implementation guidelines.
+- Adding new MCP servers
+- Code style and conventions
+- PR submission checklist
 
 ## License
 
@@ -141,4 +150,8 @@ MIT License — see [LICENSE](./LICENSE) for details.
 - [GST Public Portal](https://services.gst.gov.in)
 - [Delhivery API Docs](https://track.delhivery.com)
 - [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/)
-- [Contributing Guide](./CONTRIBUTING.md)
+- [GitHub Issues](https://github.com/Samarth-23-eng/India-MCP/issues)
+
+---
+
+<!-- mcp-name: io.github.Samarth-23-eng/india-mcp -->
