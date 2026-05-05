@@ -1,0 +1,9 @@
+﻿{
+  "servers": {
+    "india-mcp-gst": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["C:\\Users\\Samta\\india-mcp\\dist\\servers\\gst-server-entry.js"]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "india-mcp/delhivery",
+  "display_name": "Delhivery Logistics Server",
+  "description": "Track shipments, calculate shipping rates, check pincode serviceability, and manage pickup locations via Delhivery's logistics API",
+  "version": "1.0.0",
+  "author": {
+    "name": "india-mcp",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "license": "MIT",
+  "tags": ["india", "logistics", "shipping", "courier", "delivery", "api"],
+  "tools": [
+    "track_shipment",
+    "get_shipping_rate",
+    "check_serviceability",
+    "track_multiple_shipments",
+    "get_pickup_locations",
+    "parse_delivery_status"
+  ],
+  "installation": {
+    "type": "npm",
+    "package": "@india-mcp/delhivery",
+    "registry": "https://www.npmjs.com/package/@india-mcp/delhivery",
+    "installCommand": "npm install @india-mcp/delhivery"
+  },
+  "config_example": {
+    "mcpServers": {
+      "india-delhivery": {
+        "command": "npx",
+        "args": ["@india-mcp/delhivery"],
+        "env": {
+          "DELHIVERY_TOKEN": "your_token"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/india-mcp"
+  },
+  "homepage": "https://github.com/anomalyco/india-mcp",
+  "keywords": ["mcp", "model-context-protocol", "india", "logistics", "delhivery", "courier", "shipping", "api"]
+}

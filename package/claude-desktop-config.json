@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "india-gst": {
+      "command": "npx",
+      "args": ["ts-node", "--esm", "dist/servers/gst-server-entry.js"],
+      "env": {},
+      "description": "GST tax server for India - search HSN codes, validate GSTINs, calculate GST"
+    },
+    "india-delhivery": {
+      "command": "npx",
+      "args": ["ts-node", "--esm", "dist/servers/delhivery-server-entry.js"],
+      "env": {
+        "DELHIVERY_TOKEN": "your_token_here"
+      },
+      "description": "Delhivery logistics server - track shipments, calculate rates, check serviceability"
+    },
+    "india-digilocker": {
+      "command": "npx",
+      "args": ["ts-node", "--esm", "dist/servers/digilocker-server-entry.js"],
+      "env": {
+        "DIGILOCKER_CLIENT_ID": "your_client_id",
+        "DIGILOCKER_CLIENT_SECRET": "your_client_secret"
+      },
+      "description": "DigiLocker document server - access government documents, OAuth flow"
+    }
+  },
+  "metadata": {
+    "instructions": "India MCP servers provide access to Indian government and enterprise APIs. Configure tokens via environment variables.",
+    "lastUpdated": "2024-05-04"
+  }
+}

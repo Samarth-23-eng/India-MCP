@@ -1,18 +1,16 @@
 {
-  "name": "india-mcp",
-  "version": "1.0.0",
+  "name": "@samarth-23-eng/india-mcp",
+  "version": "1.0.5",
+  "mcpName": "io.github.Samarth-23-eng/india-mcp-gst",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:client": "ts-node --esm src/test-client.ts",
     "gst": "ts-node --esm src/servers/gst-server-entry.ts",
     "delhivery": "ts-node --esm src/servers/delhivery-server-entry.ts",
-    "digilocker": "ts-node --esm src/servers/digilocker-server-entry.ts"
+    "digilocker": "ts-node --esm src/servers/digilocker-server-entry.ts",
+    "railways": "ts-node --esm src/servers/railways-server-entry.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "axios": "^1.16.0",
