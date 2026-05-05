@@ -9,7 +9,8 @@
     "gst": "ts-node --esm src/servers/gst-server-entry.ts",
     "delhivery": "ts-node --esm src/servers/delhivery-server-entry.ts",
     "digilocker": "ts-node --esm src/servers/digilocker-server-entry.ts",
-    "railways": "ts-node --esm src/servers/railways-server-entry.ts"
+    "railways": "ts-node --esm src/servers/railways-server-entry.ts",
+    "rto": "ts-node --esm src/servers/rto-server-entry.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
@@ -18,8 +19,8 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
+    "@types/node": "^22.13.0",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "^5.7.3"
   }
 }
