@@ -1,0 +1,8 @@
+registry/
+src/
+*.ts
+*.map
+*.tgz
+temp.txt
+.vscode/
+node_modules/
