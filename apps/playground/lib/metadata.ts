@@ -215,11 +215,13 @@ export const workflows = [
   },
 ] as const
 
+export type Server = typeof servers[number]
+
 export const Metadata = {
   servers,
   categories,
   workflows,
-  total Tools: servers.reduce((acc, s) => acc + s.toolCount, 0),
+  totalTools: servers.reduce((acc, s) => acc + s.toolCount, 0),
   totalServers: servers.length,
   totalWorkflows: workflows.length,
   totalCategories: categories.length,

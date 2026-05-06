@@ -1,3 +1,5 @@
+'use client'
+
 import { Metadata } from '@/lib/metadata'
 import { motion } from 'framer-motion'
 import { ArrowRight, GitBranch } from 'lucide-react'
