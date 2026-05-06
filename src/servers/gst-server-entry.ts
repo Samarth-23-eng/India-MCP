@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { GSTServer } from './gst-server.js';
 
 async function main() {

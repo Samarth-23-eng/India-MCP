@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { DelhiveryServer } from './delhivery-server.js';
 
 async function main() {

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { RTOServer } from './rto-server.js';
 
 async function main() {

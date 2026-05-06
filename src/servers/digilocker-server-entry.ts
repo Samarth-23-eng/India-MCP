@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { DigiLockerServer } from './digilocker-server.js';
 
 async function main() {

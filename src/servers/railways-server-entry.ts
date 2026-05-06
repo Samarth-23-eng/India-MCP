@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { RailwaysServer } from './railways-server.js';
 
 async function main() {

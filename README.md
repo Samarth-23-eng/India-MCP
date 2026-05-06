@@ -1,157 +1,141 @@
-# 🇮🇳 India MCP — Model Context Protocol Servers for Indian APIs
+# 🇮🇳 India MCP
 
-<p align="center">
-  <strong>Let AI agents operate natively in the Indian market</strong>
-</p>
+[![npm version](https://img.shields.io/npm/v/@samarth-23-eng/india-mcp?style=flat)](https://www.npmjs.com/package/@samarth-23-eng/india-mcp)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/@samarth-23-eng/india-mcp"><img src="https://img.shields.io/npm/v/@samarth-23-eng/india-mcp?style=flat" alt="npm"></a>
-  <a href="https://github.com/Samarth-23-eng/India-MCP/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat" alt="License"></a>
-  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-Compatible-green?style=flat" alt="MCP"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></a>
-</p>
+Collection of MCP (Model Context Protocol) servers for Indian APIs and services. Enable AI agents like Claude, Cursor, and OpenCode to operate natively in the Indian market with real-time data and specialized tools.
 
-India MCP provides Model Context Protocol (MCP) servers that wrap popular Indian government and enterprise APIs. Enable AI assistants like Claude Desktop, Cursor, and others to interact natively with Indian digital infrastructure.
+---
 
-## Available Servers
+## 🇮🇳 Why India-MCP?
 
-| Server | Registry | Tools | Description |
-|--------|----------|------|-------------|
-| **GST** | [`@samarth-23-eng/india-mcp-gst`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-gst) | 5 | Validate GSTINs, search HSN/SAC codes, calculate GST, get filing deadlines |
-| **Railways** | [`@samarth-23-eng/india-mcp-railways`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-railways) | 7 | Search trains, PNR status, schedules, live status, fare enquiry |
-| **RTO** | [`@samarth-23-eng/india-mcp-rto`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-rto) | 6 | Decode vehicle registration, road tax calculator, RTO info |
-| **Delhivery** | [`@samarth-23-eng/india-mcp-delhivery`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-delhivery) | 6 | Track shipments, shipping rates, pincode serviceability |
-| **DigiLocker** | [`@samarth-23-eng/india-mcp-digilocker`](https://www.npmjs.com/package/@samarth-23-eng/india-mcp-digilocker) | 5 | Access government documents, verify Aadhaar linking |
+Indian digital infrastructure is powerful but fragmented. Many government and enterprise portals are:
+- **Unstable**: Intermittent downtime and slow response times.
+- **Protected**: Require specific headers and session management.
+- **Inconsistent**: Varying data formats (HTML, JSON, XML).
 
-## Installation
+**India-MCP** provides a **unified, resilient, and AI-optimized layer** over these services, enabling agents to verify identities, track logistics, analyze markets, and navigate the legal system with a single protocol.
 
-Install all servers:
+---
+
+## 🚀 Features
+
+- **Production Grade**: Hardened servers with retry logic, request timeouts, and in-memory TTL caching.
+- **Resilient Data**: Intelligent fallback strategies (e.g., NSE → Yahoo Finance) for maximum availability.
+- **Privacy First**: Browser-compliant headers and respectful API usage patterns.
+- **Developer Friendly**: Clean JSON-RPC interfaces and normalized tool responses.
+- **Unified Ecosystem**: Shared utilities for banking, legal, and market data.
+
+---
+
+## 🛠 Available Servers
+
+| Server | Domain | Tools | Description |
+| :--- | :--- | :---: | :--- |
+| **GST** | Taxation | 5 | Validate GSTINs, HSN codes, and tax calculations. |
+| **Railways** | Transport | 7 | Live train status, PNR enquiry, and schedules. |
+| **RTO** | Automotive | 6 | Vehicle registration details and road tax calculator. |
+| **Banking** | Fintech | 3 | IFSC search, UPI validation, and bank status. |
+| **Stocks** | Markets | 8 | NSE/BSE real-time quotes, indices, and history. |
+| **eCourts** | Legal | 6 | Court cases, orders, and cause list retrieval. |
+
+Detailed catalog: [docs/SERVERS.md](./docs/SERVERS.md) | Full Tool Index: [docs/TOOLS.md](./docs/TOOLS.md)
+
+---
+
+## 📦 Installation
+
 ```bash
-npm install @samarth-23-eng/india-mcp
+npm install -g @samarth-23-eng/india-mcp
 ```
 
-Or install individual servers:
+**Quick start — launch any server with one command:**
+
 ```bash
-npm install @samarth-23-eng/india-mcp-gst
-npm install @samarth-23-eng/india-mcp-railways
-npm install @samarth-23-eng/india-mcp-rto
+india-mcp stocks       # NSE/BSE stock data
+india-mcp gst          # GST validation
+india-mcp ecourts      # Court case lookup
+india-mcp fssai        # Food license verification
+india-mcp list         # Show all available servers
+india-mcp --help       # Full usage guide
 ```
 
-## Quick Start
+Or use `npx` without installing:
 
-### Claude Desktop Configuration
+```bash
+npx @samarth-23-eng/india-mcp stocks
+```
 
-Add to your Claude Desktop `config.json`:
+---
+
+## 🔌 MCP Client Configuration
+
+### Claude Desktop
+Add this to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
+    "india-stocks": {
+      "command": "npx",
+      "args": ["-y", "@samarth-23-eng/india-mcp", "stocks"]
+    },
+    "india-ecourts": {
+      "command": "npx",
+      "args": ["-y", "@samarth-23-eng/india-mcp", "ecourts"]
+    },
     "india-gst": {
       "command": "npx",
-      "args": ["@samarth-23-eng/india-mcp-gst"],
-      "env": {}
-    },
-    "india-railways": {
-      "command": "npx",
-      "args": ["@samarth-23-eng/india-mcp-railways"],
-      "env": {}
-    },
-    "india-rto": {
-      "command": "npx",
-      "args": ["@samarth-23-eng/india-mcp-rto"],
-      "env": {}
-    },
-    "india-delhivery": {
-      "command": "npx",
-      "args": ["@samarth-23-eng/india-mcp-delhivery"],
-      "env": {
-        "DELHIVERY_TOKEN": "your_token_here"
-      }
-    },
-    "india-digilocker": {
-      "command": "npx",
-      "args": ["@samarth-23-eng/india-mcp-digilocker"],
-      "env": {
-        "DIGILOCKER_CLIENT_ID": "your_client_id",
-        "DIGILOCKER_CLIENT_SECRET": "your_client_secret"
-      }
+      "args": ["-y", "@samarth-23-eng/india-mcp", "gst"]
     }
   }
 }
 ```
 
-### Run Locally
-
-```bash
-# GST Server (no auth required)
-npm run gst
-
-# Railways Server (no auth required)
-npm run railways
-
-# RTO Server (no auth required)
-npm run rto
-
-# Delhivery Server (requires token)
-DELHIVERY_TOKEN=your_token npm run delhivery
-
-# DigiLocker Server (requires OAuth credentials)
-DIGILOCKER_CLIENT_ID=xxx DIGILOCKER_CLIENT_SECRET=xxx npm run digilocker
-```
-
-## Environment Variables
-
-| Variable | Server | Required | Description |
-|----------|--------|----------|-------------|
-| None | GST | No | Uses public GST APIs — no auth needed |
-| `DELHIVERY_TOKEN` | Delhivery | Yes | Get from [Delhivery Dashboard](https://track.delhivery.com/settings/api) |
-| `DIGILOCKER_CLIENT_ID` | DigiLocker | Yes | Get from [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/) |
-| `DIGILOCKER_CLIENT_SECRET` | DigiLocker | Yes | Get from [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/) |
-
-## Why India MCP?
-
-India has unique digital infrastructure that global AI assistants cannot natively access:
-
-- **GST System** — Every business in India must comply with GST. AI agents need to look up HSN codes, validate GSTINs, and calculate taxes.
-- **Railways** — Indian Railways handles 8,000+ trains daily. AI agents need train search, PNR status, and live tracking.
-- **RTO** — Vehicle registration, road tax, and challan checking are essential for automotive AI use cases.
-- **Logistics** — Delhivery, Shiprocket handle most last-mile delivery in India.
-- **DigiLocker** — Government documents (Aadhaar, PAN, driving license, vehicle registration) are stored here.
-
-This project fills the gap in AI agent coverage for the world's largest market by population.
-
-## Roadmap
-
-Looking to add more servers. Contributions welcome:
-
-- **India Post** — Track speed post shipments
-- **EPFO/PF** — Provident fund information
-- **IndiaMART** — B2B lead fetching
-- **MakeMyTrip/IRCTC** — Travel booking
-- **Razorpay** — Payment gateway integration
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for adding new servers.
-
-## Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines on:
-
-- Adding new MCP servers
-- Code style and conventions
-- PR submission checklist
-
-## License
-
-MIT License — see [LICENSE](./LICENSE) for details.
-
-## Links
-
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
-- [GST Public Portal](https://services.gst.gov.in)
-- [Delhivery API Docs](https://track.delhivery.com)
-- [DigiLocker Developer Portal](https://digitallocker.gov.in/developer/)
-- [GitHub Issues](https://github.com/Samarth-23-eng/India-MCP/issues)
+Detailed guides: [docs/EXAMPLES.md](./docs/EXAMPLES.md)
 
 ---
 
-<!-- mcp-name: io.github.Samarth-23-eng/india-mcp -->
+## 🏗 Architecture
+
+India-MCP uses a shared resilience layer to handle the instability of Indian government portals.
+- **Retries**: 2 retries with exponential backoff for all network calls.
+- **Caching**: TTL-based memory cache to prevent IP blocking.
+- **Fallbacks**: Automatic switching to backup data sources.
+
+Technical details: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
+
+---
+
+## 🛤 Roadmap
+
+Planned servers:
+- [ ] **eCourts (Extended)**: Supreme Court and High Court specific filters.
+- [ ] **FSSAI**: Food license validation.
+- [ ] **CDSCO**: Medicine registry verification.
+- [ ] **Land Records**: Digital Bhulekh access.
+
+---
+
+## 🚀 Release Process
+
+1. **Bump Version**: `npm version patch --no-git-tag-version`
+2. **Build**: `npm run build`
+3. **Validate**: `npm run validate:publish`
+4. **Publish to npm**: `npm publish --access public`
+5. **Registry**: `mcp-publisher validate` & `mcp-publisher publish`
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started.
+
+---
+
+## 📄 License
+
+MIT © [Samarth-23-eng](https://github.com/Samarth-23-eng)
+

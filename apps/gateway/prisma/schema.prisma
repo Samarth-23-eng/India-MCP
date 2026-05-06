@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  plan      String   @default("free") // free, pro, enterprise
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  keys      ApiKey[]
+  logs      UsageLog[]
+}
+
+model ApiKey {
+  id        String   @id @default(uuid())
+  keyHash   String   @unique
+  prefix    String   // imcp_sk_...
+  name      String   @default("Default Key")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  lastUsed  DateTime?
+}
+
+model UsageLog {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  server     String
+  tool       String
+  latency    Int
+  success    Boolean
+  error      String?
+  source     String?
+  timestamp  DateTime @default(now())
+
+  @@index([userId, timestamp])
+  @@index([server, tool])
+}

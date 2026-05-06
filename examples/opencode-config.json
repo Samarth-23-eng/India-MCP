@@ -1,0 +1,8 @@
+{
+  "mcp": {
+    "india-stocks": {
+      "type": "local",
+      "command": ["npx", "-y", "@samarth-23-eng/india-mcp", "stocks"]
+    }
+  }
+}

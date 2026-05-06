@@ -1,9 +1,21 @@
 {
   "name": "@samarth-23-eng/india-mcp",
-  "version": "1.0.10",
+  "version": "1.0.16",
   "mcpName": "io.github.Samarth-23-eng/india-mcp",
-  "description": "MCP servers for Indian APIs — GST, Railways, RTO and more. Let AI agents operate natively in the Indian market.",
-  "keywords": ["mcp", "india", "gst", "gstin", "railways", "irctc", "rto", "vehicle", "indian-api", "model-context-protocol"],
+  "description": "Production-grade MCP servers for Indian APIs - Stocks (NSE/BSE), Banking (IFSC/UPI), GST, Railways, and RTO.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "india",
+    "nse",
+    "bse",
+    "stocks",
+    "gst",
+    "railways",
+    "ai",
+    "claude",
+    "cursor"
+  ],
   "author": {
     "name": "Samarth-23-eng",
     "url": "https://github.com/Samarth-23-eng"
@@ -13,6 +25,25 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/Samarth-23-eng/India-MCP#readme",
+  "type": "module",
+  "bin": {
+    "india-mcp": "./dist/cli.js",
+    "india-mcp-gst": "./dist/servers/gst-server-entry.js",
+    "india-mcp-railways": "./dist/servers/railways-server-entry.js",
+    "india-mcp-rto": "./dist/servers/rto-server-entry.js",
+    "india-mcp-banking": "./dist/servers/banking-server-entry.js",
+    "india-mcp-stocks": "./dist/servers/stocks-server-entry.js",
+    "india-mcp-delhivery": "./dist/servers/delhivery-server-entry.js",
+    "india-mcp-digilocker": "./dist/servers/digilocker-server-entry.js",
+    "india-mcp-ecourts": "./dist/servers/ecourts-server-entry.js",
+    "india-mcp-fssai": "./dist/servers/fssai-server-entry.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Samarth-23-eng/India-MCP.git"
@@ -24,7 +55,14 @@
     "delhivery": "ts-node --esm src/servers/delhivery-server-entry.ts",
     "digilocker": "ts-node --esm src/servers/digilocker-server-entry.ts",
     "railways": "ts-node --esm src/servers/railways-server-entry.ts",
-    "rto": "ts-node --esm src/servers/rto-server-entry.ts"
+    "rto": "ts-node --esm src/servers/rto-server-entry.ts",
+    "banking": "ts-node --esm src/servers/banking-server-entry.ts",
+    "stocks": "ts-node --esm src/servers/stocks-server-entry.ts",
+    "ecourts": "ts-node --esm src/servers/ecourts-server-entry.ts",
+    "fssai": "ts-node --esm src/servers/fssai-server-entry.ts",
+    "build": "tsc",
+    "generate-docs": "ts-node --esm scripts/generate-docs.ts",
+    "validate:publish": "tsc && dir dist\\servers\\*-entry.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
