@@ -1,0 +1,7 @@
+[railway]
+# Tell Railway that the project root is inside apps/gateway
+# Railway will run npm install + npm build from there
+definitionFile = "apps/gateway"
+
+[deploy]
+healthCheckPath = "/health"
