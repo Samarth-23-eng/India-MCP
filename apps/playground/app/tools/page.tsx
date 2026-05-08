@@ -59,6 +59,9 @@ function TimelineBadge({ latency }: { latency: number }) {
 
 // ─── Main Component ────────────────────────────────────────────────────────────
 
+// Use environment variable with fallback - works in both dev and production
+const GATEWAY_URL = process.env.NEXT_PUBLIC_GATEWAY_URL || 'http://localhost:3001'
+
 const DEFAULT_ARGS: Record<string, string> = {
   stocks: '{\n  "symbol": "RELIANCE"\n}',
   gst: '{\n  "gstin": "27AABCU9603R1ZM"\n}',
@@ -111,7 +114,7 @@ export default function ToolsPage() {
       }
 
       const start = Date.now()
-      const res = await fetch('http://localhost:3001/execute', {
+      const res = await fetch(`${GATEWAY_URL}/execute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

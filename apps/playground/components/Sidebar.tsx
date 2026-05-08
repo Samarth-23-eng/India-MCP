@@ -8,6 +8,9 @@ import { LayoutDashboard, Search, GitBranch, Settings, Activity } from 'lucide-r
 import { useEffect, useState } from 'react'
 import { hasApiKey } from '@/lib/auth'
 
+// Use environment variable with fallback - works in both dev and production
+const GATEWAY_URL = process.env.NEXT_PUBLIC_GATEWAY_URL || 'http://localhost:3001'
+
 const navItems = [
   { href: '/', label: 'Servers', icon: LayoutDashboard },
   { href: '/tools', label: 'Tools', icon: Search },
@@ -48,7 +51,7 @@ export function Sidebar() {
         setConnected(true)
       } catch {
         try {
-          const res = await fetch('http://localhost:3001/health', { signal: AbortSignal.timeout(2000) })
+          const res = await fetch(`${GATEWAY_URL}/health`, { signal: AbortSignal.timeout(2000) })
           if (res.ok) {
             const data = await res.json()
             setHealth({ status: data.status, uptime: data.uptime, activeServers: data.activeServers })

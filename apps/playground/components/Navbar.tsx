@@ -2,10 +2,34 @@
 
 import { motion } from 'framer-motion'
 import { Search, Moon, Sun } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+const THEME_KEY = 'india-mcp-theme'
+
+function getInitialTheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'dark'
+  const stored = localStorage.getItem(THEME_KEY)
+  if (stored === 'light' || stored === 'dark') return stored
+  // Default to dark
+  return 'dark'
+}
 
 export function Navbar() {
   const [darkMode, setDarkMode] = useState(true)
+
+  // Restore theme from localStorage on mount and apply it
+  useEffect(() => {
+    const isDark = getInitialTheme() === 'dark'
+    setDarkMode(isDark)
+    document.documentElement.classList.toggle('dark', isDark)
+  }, [])
+
+  const toggleTheme = () => {
+    const newMode = !darkMode
+    setDarkMode(newMode)
+    localStorage.setItem(THEME_KEY, newMode ? 'dark' : 'light')
+    document.documentElement.classList.toggle('dark', newMode)
+  }
 
   return (
     <header className="h-14 border-b bg-card flex items-center justify-between px-6">
@@ -24,14 +48,16 @@ export function Navbar() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setDarkMode(!darkMode)}
+          onClick={toggleTheme}
           className="p-2 rounded-lg hover:bg-muted"
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
         >
           {darkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
         </motion.button>
         <a
           href="https://github.com/Samarth-23-eng/India-MCP"
           target="_blank"
+          rel="noopener noreferrer"
           className="text-sm text-muted-foreground hover:text-foreground"
         >
           GitHub

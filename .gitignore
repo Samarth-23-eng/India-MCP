@@ -6,3 +6,20 @@ dist/
 temp.txt
 server.json
 claude-desktop-config.json
+
+# Next.js build cache — always rebuild fresh, avoids WSL/Windows corruption
+apps/playground/.next
+
+# Environment files with secrets
+apps/gateway/.env
+apps/gateway/.env.local
+apps/playground/.env.local
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS artifacts
+.DS_Store
+Thumbs.db

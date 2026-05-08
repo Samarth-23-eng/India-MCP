@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
 import { saveApiKey, clearApiKey, getApiKey, maskApiKey } from '@/lib/auth'
 
+// Use environment variable with fallback - works in both dev and production
 const GATEWAY_URL = process.env.NEXT_PUBLIC_GATEWAY_URL || 'http://localhost:3001'
 
 interface Stats {

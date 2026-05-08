@@ -30,6 +30,13 @@ export const servers = [
     domains: ['taxation', 'compliance', 'business-verification'],
     entryFile: 'gst-server-entry.js',
     toolCount: 5,
+    tools: [
+      { name: "validate_gstin", description: "Validate a GSTIN and retrieve registration status" },
+      { name: "search_hsn_code", description: "Search HSN codes by product keyword" },
+      { name: "get_gst_rate_by_hsn", description: "Get GST tax rate for an HSN code" },
+      { name: "calculate_gst", description: "Calculate CGST/SGST/IGST from amount and rate" },
+      { name: "get_filing_deadline", description: "Get GST filing due dates" },
+    ],
   },
   {
     key: 'railways',
@@ -46,6 +53,15 @@ export const servers = [
     domains: ['transport', 'travel', 'logistics'],
     entryFile: 'railways-server-entry.js',
     toolCount: 7,
+    tools: [
+      { name: "get_train_status", description: "Live running status of a train" },
+      { name: "pnr_status", description: "PNR booking status enquiry" },
+      { name: "search_train", description: "Search trains between stations" },
+      { name: "get_schedule", description: "Station-wise train schedule" },
+      { name: "calculate_fare", description: "Calculate fare between stations" },
+      { name: "get_station_info", description: "Get station details by code" },
+      { name: "check_seat_availability", description: "Check seat availability" },
+    ],
   },
   {
     key: 'rto',
@@ -62,6 +78,14 @@ export const servers = [
     domains: ['automotive', 'transport', 'compliance'],
     entryFile: 'rto-server-entry.js',
     toolCount: 6,
+    tools: [
+      { name: "decode_registration_number", description: "Decode vehicle registration plate" },
+      { name: "get_vehicle_info", description: "Get ownership, insurance, fitness details" },
+      { name: "check_vehicle_challan", description: "Check pending traffic fines" },
+      { name: "calculate_road_tax", description: "Calculate road tax liability" },
+      { name: "get_rto_office_info", description: "Get RTO office address and contact" },
+      { name: "check_driving_license_status", description: "Verify driving license validity" },
+    ],
   },
   {
     key: 'banking',
@@ -78,6 +102,11 @@ export const servers = [
     domains: ['payments', 'banking', 'finance'],
     entryFile: 'banking-server-entry.js',
     toolCount: 3,
+    tools: [
+      { name: "ifsc_lookup", description: "Look up bank branch by IFSC code" },
+      { name: "upi_validate", description: "Validate UPI payment address" },
+      { name: "bank_uptime", description: "Check real-time UPI uptime" },
+    ],
   },
   {
     key: 'stocks',
@@ -93,7 +122,15 @@ export const servers = [
     requiresAuth: false,
     domains: ['equity', 'markets', 'investing', 'fintech'],
     entryFile: 'stocks-server-entry.js',
-    toolCount: 8,
+    toolCount: 6,
+    tools: [
+      { name: "get_quote", description: "Get real-time stock quote" },
+      { name: "get_market_status", description: "Check if market is open/closed" },
+      { name: "get_historical_data", description: "Get historical OHLCV data" },
+      { name: "search_stocks", description: "Search stocks by name or symbol" },
+      { name: "get_index", description: "Get index (NIFTY/SENSEX) value" },
+      { name: "get_sector_performance", description: "Compare sector performance" },
+    ],
   },
   {
     key: 'ecourts',
@@ -109,7 +146,13 @@ export const servers = [
     requiresAuth: false,
     domains: ['legal', 'compliance', 'due-diligence'],
     entryFile: 'ecourts-server-entry.js',
-    toolCount: 6,
+    toolCount: 4,
+    tools: [
+      { name: "search_case", description: "Search cases by case number, party, or advocates" },
+      { name: "get_case_status", description: "Get detailed case status and history" },
+      { name: "get_causelist", description: "Get daily cause list for a court" },
+      { name: "get_case_orders", description: "Get orders/judgments for a case" },
+    ],
   },
   {
     key: 'fssai',
@@ -125,7 +168,11 @@ export const servers = [
     requiresAuth: false,
     domains: ['food-safety', 'compliance', 'business-verification'],
     entryFile: 'fssai-server-entry.js',
-    toolCount: 6,
+    toolCount: 2,
+    tools: [
+      { name: "verify_fssai_license", description: "Verify FSSAI license/registration number" },
+      { name: "search_fssai_by_pincode", description: "Search FSSAI establishments by pincode" },
+    ],
   },
   {
     key: 'delhivery',
@@ -141,7 +188,11 @@ export const servers = [
     requiresAuth: true,
     domains: ['logistics', 'ecommerce', 'supply-chain'],
     entryFile: 'delhivery-server-entry.js',
-    toolCount: 6,
+    toolCount: 2,
+    tools: [
+      { name: "track_shipment", description: "Track shipment by AWB or tracking number" },
+      { name: "get_pickup_status", description: "Check pickup request status" },
+    ],
   },
   {
     key: 'digilocker',
@@ -157,7 +208,11 @@ export const servers = [
     requiresAuth: true,
     domains: ['identity', 'kyc', 'government-documents'],
     entryFile: 'digilocker-server-entry.js',
-    toolCount: 5,
+    toolCount: 2,
+    tools: [
+      { name: "list_documents", description: "List documents in DigiLocker vault" },
+      { name: "pull_document", description: "Pull a document from DigiLocker" },
+    ],
   },
 ] as const
 

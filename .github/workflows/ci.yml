@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: apps/playground/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/playground
+
+      - name: Run ESLint
+        run: npm run lint
+
+  type-check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check (tsc --noEmit)
+        run: npx tsc --noEmit
+
+  gateway-build:
+    name: Gateway Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: apps/gateway/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/gateway
+
+      - name: Build gateway
+        run: NOCOLOR=1 npm run build
+        working-directory: apps/gateway
+
+  playground-build:
+    name: Playground Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: apps/playground/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/playground
+
+      - name: Build playground
+        run: NOCOLOR=1 npm run build
+        working-directory: apps/playground
