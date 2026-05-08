@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "buildOutputDir": ".next",
+  "devCommand": "npm run dev",
+  "regions": ["bom1"],
+  "github": {
+    "enabled": true,
+    "silent": false
+  },
+  "env": {
+    "NEXT_PUBLIC_GATEWAY_URL": {
+      "description": "Railway gateway URL - replace with your Railway deployment URL",
+      "value": "https://your-railway-app.up.railway.app"
+    }
+  }
+}

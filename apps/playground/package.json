@@ -2,11 +2,16 @@
   "name": "@samarth-23-eng/india-mcp-playground",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3004",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",

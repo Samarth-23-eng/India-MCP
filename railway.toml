@@ -1,7 +1,24 @@
 [railway]
-# Tell Railway that the project root is inside apps/gateway
-# Railway will run npm install + npm build from there
+# Railway deployment configuration for India-MCP Gateway
+# This tells Railway to deploy from apps/gateway directory
 definitionFile = "apps/gateway"
 
 [deploy]
+# Health check endpoint
 healthCheckPath = "/health"
+# Start command - Railway will auto-detect but we specify explicitly
+startCommand = "npm start"
+# Number of seconds to wait for health check
+startDetectionTimeout = 30
+
+[runtime]
+# Use Node.js runtime
+runtime = "node"
+
+[environment]
+# Variables that should be set in Railway dashboard
+variables = [
+  { key = "DATABASE_URL", description = "PostgreSQL connection string" },
+  { key = "JWT_SECRET", description = "Secret for JWT token signing" },
+  { key = "ALLOWED_ORIGINS", description = "Comma-separated list of allowed CORS origins" }
+]
